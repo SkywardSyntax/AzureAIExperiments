@@ -2,8 +2,6 @@ import OpenAI from "openai";
 
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
 const apiKey = process.env.AZURE_OPENAI_API_KEY;
-const apiVersion =
-  process.env.AZURE_OPENAI_API_VERSION ?? "2024-12-01-preview";
 
 if (!apiKey) {
   console.warn(
@@ -17,10 +15,11 @@ if (!endpoint) {
   );
 }
 
+// For the Responses API v1, no api-version query parameter is needed
+// The OpenAI library handles the endpoint correctly with /openai/v1
 export const azureClient = new OpenAI({
   apiKey,
   baseURL: endpoint ? `${endpoint}/openai/v1` : undefined,
-  defaultQuery: { "api-version": apiVersion },
 });
 
 export const defaultDeployment =

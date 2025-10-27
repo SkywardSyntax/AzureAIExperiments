@@ -34,10 +34,11 @@ All Azure OpenAI interactions follow the Responses API guidance from Microsoft d
    AZURE_OPENAI_API_KEY=your-azure-openai-foundry-key
    AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com
    AZURE_OPENAI_DEPLOYMENT=gpt-4.1
-   AZURE_OPENAI_API_VERSION=2024-12-01-preview
    ```
 
    > Only the API key is secret, but the endpoint and deployment name are required so the client can call Azure OpenAI.
+   > 
+   > **Note:** The `AZURE_OPENAI_API_VERSION` environment variable is no longer needed when using the Responses API v1 endpoint.
 
 3. **Run the dev server**
    ```bash
