@@ -1,6 +1,6 @@
 ## Azure AI Artifact Studio
 
-An end-to-end reference app that showcases the Azure OpenAI **Responses API** with the `gpt-4.1` model. The experience lets users:
+An end-to-end reference app that showcases the Azure OpenAI **Responses API** with the `gpt-5` model utilizing medium reasoning effort. The experience lets users:
 
 - Upload images (stored locally on the server) or text-based files for multimodal analysis.
 - Ask questions about their uploads through a chat interface.
@@ -15,7 +15,7 @@ All Azure OpenAI interactions follow the Responses API guidance from Microsoft d
 ### Prerequisites
 
 - Node.js 18.17+ (Next.js requirement)
-- Azure OpenAI resource with a deployed `gpt-4.1` (or higher) model
+- Azure OpenAI resource with a deployed `gpt-5` model
 - Azure OpenAI API key (Azure AI Foundry key)
 
 ---
@@ -33,7 +33,7 @@ All Azure OpenAI interactions follow the Responses API guidance from Microsoft d
    ```ini
    AZURE_OPENAI_API_KEY=your-azure-openai-foundry-key
    AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com
-   AZURE_OPENAI_DEPLOYMENT=gpt-4.1
+   AZURE_OPENAI_DEPLOYMENT=gpt-5
    ```
 
    > Only the API key is secret, but the endpoint and deployment name are required so the client can call Azure OpenAI.

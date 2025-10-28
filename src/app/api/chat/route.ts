@@ -137,6 +137,9 @@ async function runResponsesCall(body: ChatRequestPayload) {
     input: azureInput,
     temperature: body.temperature ?? 0.4,
     tools,
+    reasoning: {
+      effort: "medium",
+    },
   });
 
   const artifacts: Artifact[] = [];
@@ -314,6 +317,7 @@ async function executeCreateDocument(
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function buildAzureInput(messages: ChatRequestPayload["messages"]): Promise<any> {
   const azureMessages: Array<Record<string, unknown>> = [];
 
