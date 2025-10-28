@@ -314,7 +314,7 @@ async function executeCreateDocument(
   };
 }
 
-async function buildAzureInput(messages: ChatRequestPayload["messages"]) {
+async function buildAzureInput(messages: ChatRequestPayload["messages"]): Promise<any> {
   const azureMessages: Array<Record<string, unknown>> = [];
 
   for (const message of messages) {
@@ -413,33 +413,34 @@ function extractAssistantText(response: OpenAIResponse) {
 function getFunctionTools() {
   return [
     {
-      type: "function",
+      type: "function" as const,
       name: "create_artifact",
+      strict: false,
       description:
         "Create an interactive micro-application that can run client-side inside a sandboxed iframe. Provide the HTML, CSS, and optional JavaScript needed.",
       parameters: {
-        type: "object",
+        type: "object" as const,
         properties: {
           title: {
-            type: "string",
+            type: "string" as const,
             description: "Short name for the artifact card.",
           },
           description: {
-            type: "string",
+            type: "string" as const,
             description: "Optional description for the artifact preview.",
           },
           html: {
-            type: "string",
+            type: "string" as const,
             description:
               "Body markup for the micro-application. Keep it self-contained.",
           },
           css: {
-            type: "string",
+            type: "string" as const,
             description:
               "Optional CSS to style the artifact. Avoid global resets.",
           },
           js: {
-            type: "string",
+            type: "string" as const,
             description:
               "Optional JavaScript that should run when the artifact loads.",
           },
@@ -448,29 +449,30 @@ function getFunctionTools() {
       },
     },
     {
-      type: "function",
+      type: "function" as const,
       name: "create_document",
+      strict: false,
       description:
         "Create a downloadable document (PDF, DOCX, TXT, CSV, or Markdown) from the provided textual content.",
       parameters: {
-        type: "object",
+        type: "object" as const,
         properties: {
           filename: {
-            type: "string",
+            type: "string" as const,
             description:
               "Base filename for the generated document without extension.",
           },
           type: {
-            type: "string",
+            type: "string" as const,
             enum: ["pdf", "docx", "txt", "csv", "md"],
             description: "File type to generate.",
           },
           content: {
-            type: "string",
+            type: "string" as const,
             description: "Raw textual content for the file.",
           },
           summary: {
-            type: "string",
+            type: "string" as const,
             description:
               "Optional short description of the generated document contents.",
           },

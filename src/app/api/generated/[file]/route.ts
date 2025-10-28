@@ -16,8 +16,9 @@ const MIME_MAP: Record<string, string> = {
 
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { file: string } },
+  context: { params: Promise<{ file: string }> },
 ) {
+  const params = await context.params;
   const storedFilename = params.file;
   const fullPath = path.join(GENERATED_DIR, storedFilename);
 
