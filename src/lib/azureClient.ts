@@ -23,4 +23,4 @@ export const azureClient = new OpenAI({
 });
 
 export const defaultDeployment =
-  process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-4.1";
+  process.env.AZURE_OPENAI_DEPLOYMENT ?? "gpt-5";

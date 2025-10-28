@@ -134,9 +134,12 @@ async function runResponsesCall(body: ChatRequestPayload) {
 
   let response = await azureClient.responses.create({
     model: defaultDeployment,
-    input: azureInput,
+    input: azureInput as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     temperature: body.temperature ?? 0.4,
     tools,
+    reasoning: {
+      effort: "medium",
+    },
   });
 
   const artifacts: Artifact[] = [];
@@ -148,7 +151,7 @@ async function runResponsesCall(body: ChatRequestPayload) {
     response = await azureClient.responses.create({
       model: defaultDeployment,
       previous_response_id: response.id,
-      input: toolCallOutputs,
+      input: toolCallOutputs as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     });
 
     toolCallOutputs = await handleToolCalls(response, artifacts, generatedFiles);
@@ -314,7 +317,7 @@ async function executeCreateDocument(
   };
 }
 
-async function buildAzureInput(messages: ChatRequestPayload["messages"]): Promise<any> {
+async function buildAzureInput(messages: ChatRequestPayload["messages"]): Promise<Array<Record<string, unknown>>> {
   const azureMessages: Array<Record<string, unknown>> = [];
 
   for (const message of messages) {
